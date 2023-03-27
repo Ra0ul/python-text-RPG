@@ -1,10 +1,10 @@
 import random
 import os
 
-mon_maz_hp = random.randrange(10, 100)
+mon_max_hp = random.randrange(10, 100)
 mon_power = random.randrange(10, 50)
-
-pla_name = str(input("플레이어의 이름을 지정해 주세요 : "))
+pla_max_hp = random.randrange(50, 100)
+pla_power = random.randrange(10, 30)
 
 
 class Character:
@@ -38,15 +38,8 @@ class Player(Character):
         self.attribute = "monster"
         super().__init__(name, hp, power)
 
-    def attack(self, other):
-        damage = random.randint(self.power - 2, self.power + 2)
-        other.hp = max(other.hp - damage, 0)  # 랜덤 데미지 주기
-        print(f"{pla_name}의 공격! {other.name}에게 {damage}의 데미지를 입혔습니다.")
-        if other.hp == 0:
-            print(f"{other.name}이(가) 쓰러졌습니다.")
-
     def status_check(self):
-        print(f"{pla_name}'s hp : {self.hp}")
+        print(f"{self.name}'s hp : {self.hp}")
 
 
 class Monster(Character):
@@ -58,20 +51,14 @@ class Monster(Character):
         self.attribute = "monster"
         super().__init__(name, hp, power)
 
-    def attack(self, other):
-        damage = random.randint(self.power - 2, self.power + 2)
-        other.hp = max(other.hp - damage, 0)  # 랜덤 데미지 주기
-        print(f"{self.name}의 공격! {pla_name}에게 {damage}의 데미지를 입혔습니다.")
-        if other.hp == 0:
-            print(f"{pla_name}이(가) 쓰러졌습니다.")
-
     def status_check(self):
         print(f"Monster's hp : {self.hp}")
 
 
+player = Player("Default", pla_max_hp, pla_power)
+player.name = str(input("플레이어의 이름을 지정해 주세요 : "))
 os.system('clear')
-player = Player("pla_name", 100, 10)
-monster = Monster("Monster", mon_maz_hp, mon_power)
+monster = Monster("Monster", mon_max_hp, mon_power)
 player.status_check()
 monster.status_check()
 
@@ -83,5 +70,13 @@ while True:
     player.status_check()
     monster.status_check()
 
-    if not (player.hp >= 0) or (monster.hp >= 0):
+    if (player.hp <= 0) or (monster.hp <= 0):
         break
+
+if player.hp > monster.hp:
+    print("승리했습니다!")
+elif player.hp < monster.hp:
+    print("패배했습니다!")
+else:
+    print("비겼습니다.")
+    input("다시 도전하시겠습니까? : (y/n)")
