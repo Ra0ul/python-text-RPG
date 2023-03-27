@@ -46,15 +46,30 @@ def game_start():
             # flag = not flag
             break
 
-    print("")
-    print("----------###결투결과###----------")
-    if player.hp > monster.hp:
-        print("승리했습니다!")
-    elif player.hp < monster.hp:
-        print("패배했습니다!")
-    else:
-        print("비겼습니다.")
-        input("다시 도전하시겠습니까? : (y/n)")
-
 
 game_start()
+
+print("")
+print("----------###결투결과###----------")
+if player.hp > monster.hp:
+    print("승리했습니다!")
+    # respon = input("새 게임으로 다시 도전하시겠습니까? : (y/n)")
+    # if respon == "y":
+    #     game_start()
+    # else:
+    #     pass
+elif player.hp < monster.hp:
+    print("패배했습니다!")
+    # input("새 게임으로 다시 도전하시겠습니까? : (y/n)")
+    # respon = input("새 게임으로 다시 도전하시겠습니까? : (y/n)")
+    # if respon == "y":
+    #     game_start()
+    # else:
+    #     pass
+else:
+    print("비겼습니다.")
+    respon = input("다시 도전하시겠습니까? : (y/n)")
+    if respon == "y":
+        game_start()
+    else:
+        pass
