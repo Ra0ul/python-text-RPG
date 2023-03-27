@@ -2,22 +2,29 @@ import random
 import os
 import hello
 
+
 mon_max_hp = random.randrange(10, 100)
 mon_power = random.randrange(10, 50)
 pla_max_hp = random.randrange(50, 100)
 pla_power = random.randrange(10, 30)
+pla_max_mp = 100
 
-
-player = hello.Player("Default", pla_max_hp, pla_power)
+player = hello.Player("Default", pla_max_hp, pla_power, pla_max_mp)
 player.name = str(input("플레이어의 이름을 지정해 주세요 : "))
+
 os.system('clear')
 monster = hello.Monster("Monster", mon_max_hp, mon_power)
 player.show_status()
 monster.show_status()
 
+skill = input("스킬을 선택해주세요.(마법공격(m)/일반공격(d)) : ")
+if skill == "m" or "마법공격":
+    pla_skill_option = player.attack_mp(monster)
+else:
+    pla_skill_option = player.attack(monster)
 
 while True:
-    player.attack(monster)
+    pla_skill_option
     monster.attack(player)
 
     player.show_status()

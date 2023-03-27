@@ -30,9 +30,22 @@ class Player(Character):
     플레이어 생성 서브 클래스
     """
 
-    def __init__(self, name, hp, power):
+    def __init__(self, name, hp, power, mp):
         self.attribute = "player"
         super().__init__(name, hp, power)
+        self.max_mp = mp
+        self.mp = mp
+
+    def attack_mp(self, other):
+        damage = random.randint(0, self.mp)
+        other.hp = max(other.hp - damage, 0)
+        self.mp = max(self.mp - damage, 0)
+        print(f"{self.name}의 마법공격! {other.name}에게 {damage}의 데미지를 입혔습니다.")
+        if other.hp == 0:
+            print(f"{other.name}이(가) 쓰러졌습니다.")
+
+    def show_status(self):
+        print(f"{self.name}의 상태: HP {self.mp}/{self.max_mp}")
 
 
 class Monster(Character):
