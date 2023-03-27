@@ -27,6 +27,7 @@ def game_start():
         print("----------전장----------")
 
         skill = input("스킬을 선택해주세요.(마법공격(m)/일반공격(d)) : ")
+        # 조건문을 잘못써서 문제 발생....
         if (skill == "d") or (skill == "일반공격"):
             player.attack(monster)
 
