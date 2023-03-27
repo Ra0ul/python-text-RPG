@@ -1,3 +1,5 @@
+# 클래스 정리 파일#
+
 import random
 
 
