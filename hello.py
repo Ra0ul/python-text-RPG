@@ -35,11 +35,8 @@ class Player(Character):
     """
 
     def __init__(self, name, hp, power):
-        self.attribute = "monster"
+        self.attribute = "player"
         super().__init__(name, hp, power)
-
-    def status_check(self):
-        print(f"{self.name}'s hp : {self.hp}")
 
 
 class Monster(Character):
@@ -51,24 +48,21 @@ class Monster(Character):
         self.attribute = "monster"
         super().__init__(name, hp, power)
 
-    def status_check(self):
-        print(f"Monster's hp : {self.hp}")
-
 
 player = Player("Default", pla_max_hp, pla_power)
 player.name = str(input("플레이어의 이름을 지정해 주세요 : "))
 os.system('clear')
 monster = Monster("Monster", mon_max_hp, mon_power)
-player.status_check()
-monster.status_check()
+player.show_status()
+monster.show_status()
 
 
 while True:
     monster.attack(player)
     player.attack(monster)
 
-    player.status_check()
-    monster.status_check()
+    player.show_status()
+    monster.show_status()
 
     if (player.hp <= 0) or (monster.hp <= 0):
         break
