@@ -21,8 +21,8 @@ def game_start():
     print("----------@@@입장@@@----------")
     player.show_status()
     monster.show_status()
-    flag = 1
-    while flag == True:
+    # flag = True
+    while True:
         print("")
         print("----------전장----------")
 
@@ -43,7 +43,7 @@ def game_start():
         monster.show_status()
 
         if (player.hp <= 0) or (monster.hp <= 0):
-            flag = 0  # 확실히 꺼주려고
+            # flag = not flag
             break
 
     print("")
