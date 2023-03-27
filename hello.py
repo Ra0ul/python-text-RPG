@@ -1,10 +1,4 @@
 import random
-import os
-
-mon_max_hp = random.randrange(10, 100)
-mon_power = random.randrange(10, 50)
-pla_max_hp = random.randrange(50, 100)
-pla_power = random.randrange(10, 30)
 
 
 class Character:
@@ -47,30 +41,3 @@ class Monster(Character):
     def __init__(self, name, hp, power):
         self.attribute = "monster"
         super().__init__(name, hp, power)
-
-
-player = Player("Default", pla_max_hp, pla_power)
-player.name = str(input("플레이어의 이름을 지정해 주세요 : "))
-os.system('clear')
-monster = Monster("Monster", mon_max_hp, mon_power)
-player.show_status()
-monster.show_status()
-
-
-while True:
-    monster.attack(player)
-    player.attack(monster)
-
-    player.show_status()
-    monster.show_status()
-
-    if (player.hp <= 0) or (monster.hp <= 0):
-        break
-
-if player.hp > monster.hp:
-    print("승리했습니다!")
-elif player.hp < monster.hp:
-    print("패배했습니다!")
-else:
-    print("비겼습니다.")
-    input("다시 도전하시겠습니까? : (y/n)")
