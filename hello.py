@@ -1,14 +1,5 @@
 # 클래스 정리 파일#
 import random
-import os
-
-
-# def show_title(a):
-#     def wrapper():
-#         os.system('clear')
-#         print("")
-#         print("------>>>>----@@@타이틀@@@------<<<<----")
-#         a()
 
 
 class Character:
@@ -22,7 +13,6 @@ class Character:
         self.hp = hp  # 현재 HP
         self.power = power  # 파워
 
-    # @show_title
     def attack(self, other):
         damage = random.randint(self.power - 2, self.power + 2)
         other.hp = max(other.hp - damage, 0)
@@ -54,6 +44,7 @@ class Player(Character):
             print(f"{other.name}이(가) 쓰러졌습니다.")
 
     def show_status(self):
+        print(">>>>>>캐릭터 상태창<<<<<<")
         print(
             f"{self.name}의 상태: HP {self.hp}/{self.max_hp} || MP {self.mp}/{self.max_mp}")
 
@@ -66,3 +57,5 @@ class Monster(Character):
     def __init__(self, name, hp, power):
         self.attribute = "monster"
         super().__init__(name, hp, power)
+        name_list = ['몬스터 송이송이', '몬스터 깔깔마녀', '몬스터 핑핑이']
+        self.name = name_list[random.randint(0, 2)]
