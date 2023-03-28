@@ -57,5 +57,6 @@ class Monster(Character):
     def __init__(self, name, hp, power):
         self.attribute = "monster"
         super().__init__(name, hp, power)
+        # 몬스터이름 무작위로 나오게하기
         name_list = ['몬스터 송이송이', '몬스터 깔깔마녀', '몬스터 핑핑이']
         self.name = name_list[random.randint(0, 2)]
