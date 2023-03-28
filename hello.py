@@ -1,5 +1,14 @@
 # 클래스 정리 파일#
 import random
+import os
+
+
+# def show_title(a):
+#     def wrapper():
+#         os.system('clear')
+#         print("")
+#         print("------>>>>----@@@타이틀@@@------<<<<----")
+#         a()
 
 
 class Character:
@@ -13,6 +22,7 @@ class Character:
         self.hp = hp  # 현재 HP
         self.power = power  # 파워
 
+    # @show_title
     def attack(self, other):
         damage = random.randint(self.power - 2, self.power + 2)
         other.hp = max(other.hp - damage, 0)
