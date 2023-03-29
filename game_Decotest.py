@@ -42,6 +42,7 @@ def battle_field():
 
 
 game_start()
+# 승부를 출력하는 함수 없이 아래처럼 while 반복문으로 재도전 가능!
 while True:
     os.system('clear')
     battle_field()
