@@ -1,5 +1,6 @@
 # 클래스 정리 파일#
 import random
+import os
 
 
 class Character:
@@ -13,6 +14,16 @@ class Character:
         self.hp = hp  # 현재 HP
         self.power = power  # 파워
 
+    def title(func):
+        def wrapper():
+            os.system('clear')
+
+            print("\n>>>>>>할로할로할로할로<<<<<<")
+
+            func()
+        return wrapper
+
+    @title
     def attack(self, other):
         damage = random.randint(self.power - 2, self.power + 2)
         other.hp = max(other.hp - damage, 0)
@@ -24,39 +35,40 @@ class Character:
         print(f"{self.name}의 상태: HP {self.hp}/{self.max_hp}")
 
 
-class Player(Character):
-    """
-    플레이어 생성 서브 클래스
-    """
+# class Player(Character):
+#     """
+#     플레이어 생성 서브 클래스
+#     """
 
-    def __init__(self, name, hp, power, mp):
-        self.attribute = "player"
-        super().__init__(name, hp, power)
-        self.max_mp = mp
-        self.mp = mp
+#     def __init__(self, name, hp, power, mp):
+#         self.attribute = "player"
+#         super().__init__(name, hp, power)
+#         self.max_mp = mp
+#         self.mp = mp
 
-    def attack_mp(self, other):
-        mp_damage = random.randint(0, self.mp)
-        other.hp = max(other.hp - mp_damage, 0)
-        self.mp = max(self.mp - mp_damage, 0)
-        print(f"{self.name}의 마법공격! {other.name}에게 {mp_damage}의 데미지를 입혔습니다.")
-        if other.hp == 0:
-            print(f"{other.name}이(가) 쓰러졌습니다.")
+#     def attack_mp(self, other):
+#         mp_damage = random.randint(0, self.mp)
+#         other.hp = max(other.hp - mp_damage, 0)
+#         self.mp = max(self.mp - mp_damage, 0)
+#         print(f"{self.name}의 마법공격! {other.name}에게 {mp_damage}의 데미지를 입혔습니다.")
+#         if other.hp == 0:
+#             print(f"{other.name}이(가) 쓰러졌습니다.")
 
-    def show_status(self):
-        print(">>>>>>캐릭터 상태창<<<<<<")
-        print(
-            f"{self.name}의 상태: HP {self.hp}/{self.max_hp} || MP {self.mp}/{self.max_mp}")
+#     def show_status(self):
+#         print("")
+#         print(">>>>>>캐릭터 상태창<<<<<<")
+#         print(
+#             f"{self.name}의 상태: HP {self.hp}/{self.max_hp} || MP {self.mp}/{self.max_mp}")
 
 
-class Monster(Character):
-    """
-    몬스터 생성 서브 클래스
-    """
+# class Monster(Character):
+#     """
+#     몬스터 생성 서브 클래스
+#     """
 
-    def __init__(self, name, hp, power):
-        self.attribute = "monster"
-        super().__init__(name, hp, power)
-        # 몬스터이름 무작위로 나오게하기
-        name_list = ['몬스터 송이송이', '몬스터 깔깔마녀', '몬스터 핑핑이']
-        self.name = name_list[random.randint(0, 2)]
+#     def __init__(self, name, hp, power):
+#         self.attribute = "monster"
+#         super().__init__(name, hp, power)
+#         # 몬스터이름 무작위로 나오게하기
+#         name_list = ['몬스터 송이송이', '몬스터 깔깔마녀', '몬스터 핑핑이']
+#         self.name = name_list[random.randint(0, 2)]
